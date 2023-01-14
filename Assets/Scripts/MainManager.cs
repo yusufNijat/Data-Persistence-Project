@@ -73,7 +73,11 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        if (m_PlayerBestScore < m_Points) m_PlayerBestScore = m_Points;
+        if (m_PlayerBestScore < m_Points) 
+        {
+            m_PlayerBestScore = m_Points;
+            GameManager.SetPlayerScore(m_PlayerBestScore);
+        }
         ScoreText.text = $"Score : {m_Points}";
         BestScore.text = $"Best Score : {m_CurrentPlayer} : {m_PlayerBestScore}";
     }
@@ -82,5 +86,6 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        GameManager.UpdatePlayers();
     }
 }
